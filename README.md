@@ -16,7 +16,7 @@ The rough idea for the dashboard would be a platform that enables underwriters t
 - A simple frontend application that connects to a backend with services connecting to different 3rd party endpoint (OPENAI/Claude, Google Maps API, Google Weather API)
 
 > 4. What technologies will I be using?
-- Frontend - React.js, Tailwind, Mantine
+- Frontend - React.js, Tailwind, Mantine, Streamlit
 - Backend - Python (FastAPI), Firebase (for speed and ease of deployment)
 
 > 5. What is my chosen data source?
