@@ -30,3 +30,10 @@
 .label {
   margin: -10px 0px -10px 0px !important;
 }
+
+
+
+iframe {
+  outline: 0 !important;
+  border: 0 !important
+}

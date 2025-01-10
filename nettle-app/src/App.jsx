@@ -4,6 +4,8 @@ import "./App.css";
 import { ModalsProvider } from "@mantine/modals";
 import { useEffect } from "react";
 import "@mantine/core/styles.css";
+import '@mantine/charts/styles.css';
+import '@mantine/dropzone/styles.css';
 import { MantineProvider } from "@mantine/core";
 
 export default function App() {

@@ -34,7 +34,7 @@ function Login() {
   });
 
   return (
-    <Box mt={"8%"} miw={"640px"} maw={"600px"}>
+    <Box pt={"8%"} miw={"640px"} maw={"600px"}>
       <Card withBorder py={"50px"} px={"36px"} shadow={"xl"} radius={"lg"}>
         <Text size={"30px"} className="bold">
           Welcome Back
