@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+
 import {
   IconLayoutDashboard,
   IconLocationDollar,
@@ -7,32 +8,33 @@ import {
   IconMessageUser,
   IconReportAnalytics,
   IconSettings2,
-} from '@tabler/icons-react';
-import { Code, Group } from '@mantine/core';
-import classes from './menu.module.css';
-import { UserButton } from '../Buttons/UserButton/UserButton';
+} from "@tabler/icons-react";
+import { Code, Group } from "@mantine/core";
+import classes from "./menu.module.css";
+import { UserButton } from "../Buttons/UserButton/UserButton";
 
 const data = [
-  { link: '', label: 'Dashboard', icon: IconLayoutDashboard },
-  { link: '', label: 'Assets', icon: IconLocationDollar },
-  { link: '', label: 'Reports', icon: IconReportAnalytics },
-  { link: '', label: 'AI Assistant', icon: IconMessageUser },
-  { link: '', label: 'Settings', icon: IconSettings2 },
-  { link: '', label: 'Security', icon: IconLockAccess}
+  { link: "dashboard", label: "Dashboard", icon: IconLayoutDashboard },
+  { link: "assets", label: "Assets", icon: IconLocationDollar },
+  { link: "reports", label: "Reports", icon: IconReportAnalytics },
+  { link: "", label: "AI Assistant", icon: IconMessageUser },
+  { link: "settings", label: "Settings", icon: IconSettings2 },
+  { link: "security", label: "Security", icon: IconLockAccess },
 ];
 
-function NavBar() {
-  const [active, setActive] = useState('Billing');
+function NavBar({ toggleMobile }) {
+  const pathname = window.location.pathname.slice(1);
 
   const links = data.map((item) => (
     <a
       className={classes.link}
-      data-active={item.label === active || undefined}
+      data-active={item.link === pathname || undefined}
       href={item.link}
       key={item.label}
       onClick={(event) => {
         event.preventDefault();
-        setActive(item.label);
+        window.location.href = item.link;
+        toggleMobile();
       }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
@@ -45,8 +47,8 @@ function NavBar() {
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
           {/* <MantineLogo size={28} inverted style={{ color: 'white' }} /> */}
-          <Code fw={700} className={classes.version}>
-            v3.1.2
+          <Code fw={700} fz={"h3"} className={classes.version}>
+            RiskAI
           </Code>
         </Group>
         {links}
@@ -55,7 +57,11 @@ function NavBar() {
       <div className={classes.footer}>
         <UserButton />
 
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a
+          href="#"
+          className={classes.link}
+          onClick={(event) => event.preventDefault()}
+        >
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
         </a>
@@ -64,5 +70,4 @@ function NavBar() {
   );
 }
 
-
-export default NavBar
+export default NavBar;
