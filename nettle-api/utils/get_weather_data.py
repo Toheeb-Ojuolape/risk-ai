@@ -12,7 +12,6 @@ def get_weather_data(longitude, latitude):
         url = f"{OPENWEATHER_API_URL}/data/2.5/weather?lat={latitude}&lon={longitude}&appid={OPENWEATHER_API_KEY}"
 
         response = requests.request('GET', url)
-        print(response.text)
         return response.text
 
     except Exception as e:

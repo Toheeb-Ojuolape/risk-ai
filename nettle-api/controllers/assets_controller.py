@@ -11,13 +11,11 @@ def create_asset_controller(request: Request):
     # create a new asset in Firebase Firestore
     try:
         data = request.state.body
-        print(request.state.body)
         asset_ref = db.collection('assets').document()
-
-        print(request.state.user['sub'])
 
         asset_data = {
             'title': data.title,
+            'type': data.type,
             'image': data.image,
             'pictures': data.pictures,
             'address': data.address,
@@ -38,6 +36,21 @@ def create_asset_controller(request: Request):
         return JSONResponse(
             status_code=400,
             content={'error': 'Something went wrong 🥺!', 'message': str(e)}
+        )
+
+def fetch_assets_controller(request: Request):
+    try:
+        user = request.state.user["sub"]
+        assets_ref = db.collection("assets")
+        query = assets_ref.where("author", "==", user)
+        assets = query.stream()
+        asset_list = [asset.to_dict() for asset in assets]
+        
+        return {'message': 'Assets fetched successfully', 'data': asset_list}
+    except Exception as e:
+        return JSONResponse(
+            status_code=400,
+            content={"error":"Something went wrong 🥺", message: str(e)}
         )
 
 

@@ -8,6 +8,12 @@ class User(BaseModel):
     display_name: str
     company_name: str
 
+
+class GoogleUser(BaseModel):
+    email: str
+    uid: str
+    display_name: str
+
 class Login(BaseModel):
     uid: str
 
@@ -29,6 +35,7 @@ class Asset(BaseModel):
     address: str
     longitude: float
     latitude: float
+    type: str
     years_of_use: int
     price: float
     last_incident: str

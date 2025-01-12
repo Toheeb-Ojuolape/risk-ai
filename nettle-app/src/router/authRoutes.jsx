@@ -4,6 +4,10 @@ import Signup from "../pages/auth/Signup";
 
 const authRoutes = [
   {
+    path: "",
+    element: <Login />,
+  },
+  {
     path: "login",
     element: <Login />,
   },

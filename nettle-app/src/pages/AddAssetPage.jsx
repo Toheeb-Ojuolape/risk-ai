@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Stepper } from "@mantine/core";
+import { Box, Stepper } from "@mantine/core";
 import AssetForm from "../components/Assets/AssetForm";
-import CustomizeReport from "./CustomizeReport";
+import CustomizeReport from "../components/Assets/CustomizeReport";
 import SuccessScreen from "../elements/SuccessScreen";
+import { IconArrowLeft } from "@tabler/icons-react";
+import { useNavigate } from "react-router";
 
 function AddAssetPage() {
   const [active, setActive] = useState(0);
@@ -10,9 +12,17 @@ function AddAssetPage() {
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+  const navigate = useNavigate();
 
   return (
     <>
+      <Box
+        className="pointer"
+        mb={"md"}
+        onClick={(() => navigate(-1))}
+      >
+        <IconArrowLeft />
+      </Box>
       <Stepper
         active={active}
         onStepClick={setActive}

@@ -1,40 +1,52 @@
-import { Table } from "@mantine/core";
+/* eslint-disable react/prop-types */
+import { Flex, Table } from "@mantine/core";
+import { Loader } from "@mantine/core";
+import MenuButton from "../Buttons/MenuButton";
 
-const elements = [
-  { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-  { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-  { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-  { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-  { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
-];
-
-function ChartTable() {
-  const rows = elements.map((element) => (
-    <Table.Tr key={element.name}>
-      <Table.Td>{element.position}</Table.Td>
-      <Table.Td>{element.name}</Table.Td>
-      <Table.Td>{element.symbol}</Table.Td>
-      <Table.Td>{element.mass}</Table.Td>
-    </Table.Tr>
-  ));
+function ChartTable({ loading, data }) {
+  const rows =
+    data &&
+    data.map((element, i) => (
+      <Table.Tr key={i}>
+        <Table.Td>{element.title}</Table.Td>
+        <Table.Td>{element.country}</Table.Td>
+        <Table.Td>{element.years_of_use}</Table.Td>
+        <Table.Td>{element.last_incident}</Table.Td>
+        <Table.Td align={"center"}>
+          <MenuButton />
+        </Table.Td>
+      </Table.Tr>
+    ));
 
   return (
-    <Table
-      striped
-      withColumnBorders
-      withTableBorder
-      stickyHeader
-    >
+    <Table striped withColumnBorders withTableBorder stickyHeader>
       <Table.Thead>
         <Table.Tr>
-          <Table.Th>Element position</Table.Th>
-          <Table.Th>Element name</Table.Th>
-          <Table.Th>Symbol</Table.Th>
-          <Table.Th>Atomic mass</Table.Th>
-          <Table.Th>Actions</Table.Th>
+          <Table.Th>Asset Name</Table.Th>
+          <Table.Th>Location</Table.Th>
+          <Table.Th>Years of Use</Table.Th>
+          <Table.Th>Last Incident</Table.Th>
+          <Table.Th align={"center"}>Actions</Table.Th>
         </Table.Tr>
       </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
+      {loading && (
+        <Table.Tbody>
+          <tr>
+            <td colSpan="5">
+              <Loader />
+            </td>
+          </tr>
+        </Table.Tbody>
+      )}
+      {!loading && data && <Table.Tbody>{rows}</Table.Tbody>}
+
+      {!data && (
+        <Table.Tbody>
+          <Table.Tr>
+            <Flex justify={"center"} my={"xl"}>Nothing to see here, yet..</Flex>
+          </Table.Tr>
+        </Table.Tbody>
+      )}
     </Table>
   );
 }
