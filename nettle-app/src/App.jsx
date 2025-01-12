@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import "@mantine/core/styles.css";
 import '@mantine/charts/styles.css';
 import '@mantine/dropzone/styles.css';
+import '@mantine/notifications/styles.css';
+// import "regenerator-runtime/runtime";
 import { MantineProvider } from "@mantine/core";
 
 export default function App() {
@@ -44,7 +46,7 @@ export default function App() {
         withNormalizeCSS
       >
         <ModalsProvider>
-          <Notifications position="top-right" />
+          <Notifications autoClose={5000} style={{color:"white"}} position="top-right" />
           <Outlet />
         </ModalsProvider>
       </MantineProvider>

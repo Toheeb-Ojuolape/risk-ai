@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
-import { Box, Button, Card, Flex, Switch, Text } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
+import {Card, Flex, Switch, Text } from "@mantine/core";
 
-function CustomizeReport({ prevStep, handleContinue }) {
+
+function SecuritySettings() {
   return (
     <Card
       radius={"lg"}
@@ -13,50 +12,43 @@ function CustomizeReport({ prevStep, handleContinue }) {
       mx={"auto"}
       pb={"xl"}
     >
-      <Box className="pointer" onClick={prevStep}>
-        <IconArrowLeft />
-      </Box>
+
 
       <Text fz={"h2"} fw={"bolder"} pt={"md"}>
-        Customize Report
+        Security Settings
       </Text>
 
       <form className="form">
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
-            Include Extreme weather Risk
+            Enable 2-Factor Authentication
           </Text>
           <Switch size="xl" onLabel="ON" offLabel="OFF" />
         </Flex>
 
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
-            Include Earthquake Risk
+            Enable Speech to Text
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch checked={true} size="xl" onLabel="ON" offLabel="OFF" />
         </Flex>
 
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
-            Include Flood Risk
+            Enable Multi-session Login
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch checked={true} size="xl" onLabel="ON" offLabel="OFF" />
         </Flex>
 
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
-            Include Wildfire Risk
+            Enable Report Download
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch checked={true} size="xl" onLabel="ON" offLabel="OFF" />
         </Flex>
       </form>
-
-      <Button size={"lg"} onClick={handleContinue}>
-        {" "}
-        Continue
-      </Button>
     </Card>
   );
 }
 
-export default CustomizeReport;
+export default SecuritySettings;

@@ -7,7 +7,6 @@ import dashboardRoutes from "./dashboardRoutes";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
       {

@@ -37,3 +37,10 @@ iframe {
   outline: 0 !important;
   border: 0 !important
 }
+
+
+.iframe{
+  width: 100% !important;
+  height: 100vh !important;
+  margin: 20px 0px !important;
+}

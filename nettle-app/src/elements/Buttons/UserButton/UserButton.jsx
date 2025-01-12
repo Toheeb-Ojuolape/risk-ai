@@ -1,23 +1,30 @@
-import { IconChevronRight } from '@tabler/icons-react';
-import { Avatar, Group, Text, UnstyledButton } from '@mantine/core';
-import classes from './UserButton.module.css';
+import { IconChevronRight } from "@tabler/icons-react";
+import { Avatar, Group, Text, UnstyledButton } from "@mantine/core";
+import classes from "./UserButton.module.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export function UserButton() {
-  return (
-    <UnstyledButton className={classes.user}>
-      <Group>
-        <Avatar
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-8.png"
-          radius="xl"
-        />
+  const { displayName, photoUrl, email } = useSelector(
+    (state) => state.auth.user._data
+  );
 
+  const navigate = useNavigate();
+
+  return (
+    <UnstyledButton
+      onClick={() => navigate("/profile", { replace: true })}
+      className={classes.user}
+    >
+      <Group>
+        <Avatar src={photoUrl} radius="xl" />
         <div style={{ flex: 1 }}>
           <Text size="sm" fw={500}>
-            Harriette Spoonlicker
+            {displayName}
           </Text>
 
           <Text c="dimmed" size="xs">
-            hspoonlicker@outlook.com
+            {email}
           </Text>
         </div>
 

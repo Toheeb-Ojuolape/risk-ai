@@ -1,14 +1,25 @@
-import { Box, Flex } from "@mantine/core";
-import ChartTable from "../elements/Table/Table";
+import { Box } from "@mantine/core";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getReports } from "../store/report.slice";
+import ReportTable from "../elements/Table/ReportsTable";
 
-function ReportsPage() {
+function AssetPage() {
+  const dispatch = useDispatch();
+  const { loading, reports } = useSelector((state) => state.report);
+
+  useEffect(() => {
+    dispatch(getReports());
+  }, []); //
+
   return (
     <Box>
-      <Flex my={"lg"} justify={"flex-end"}>
-      </Flex>
-      <ChartTable />
+    
+
+      {loading ? "Loading assets..." : null}
+      {!loading && <ReportTable loading={loading} data={reports} />}
     </Box>
   );
 }
 
-export default ReportsPage;
+export default AssetPage;

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import { Card, Text, Flex } from "@mantine/core";
+import { Card, Text, Flex, Loader } from "@mantine/core";
 import * as allIcons from "@tabler/icons-react";
 
-function StatCard({ title, description, icon, value }) {
+function StatCard({ title, description, icon, value, loading }) {
   const Icon = allIcons[icon];
 
   return (
@@ -22,9 +22,17 @@ function StatCard({ title, description, icon, value }) {
         {icon && <Icon />}
       </Flex>
 
-      <Text fz={"h1"} fw={"bold"}>
-        {value}
-      </Text>
+      {!loading && (
+        <Text fz={"h1"} fw={"bold"}>
+          {value}
+        </Text>
+      )}
+
+      {loading && (
+        <Text fz={"h1"} fw={"bold"}>
+          <Loader />
+        </Text>
+      )}
 
       <Text fz={"sm"} color={"gray"}>
         {description}

@@ -16,7 +16,13 @@ import { unslugify } from "../utils";
 function DashboardLayout() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened] = useDisclosure(true);
-  const pathname = unslugify(window.location.pathname)
+  const pathname = unslugify(window.location.pathname);
+  const token = sessionStorage.getItem("authToken");
+
+  //route guard
+  if (!token) {
+    window.location.href = "/login";
+  }
 
   return (
     <AppShell

@@ -3,6 +3,8 @@ import AddAssetPage from "../pages/AddAssetPage"
 import DashboardHome from "../pages/DashboardHome";
 import ReportsPage from "../pages/ReportsPage";
 import ProfilePage from "../pages/ProfilePage";
+import SettingsPage from "../pages/SettingsPage";
+import AiAssistant from "../pages/AiAssistant";
 
 const dashboardRoutes = [
   {
@@ -26,8 +28,13 @@ const dashboardRoutes = [
   },
 
   {
+    path: "/ai-assistant",
+    element: <AiAssistant />,
+  },
+
+  {
     path: "/settings",
-    element: <ReportsPage />,
+    element: <SettingsPage/>,
   },
 
   {

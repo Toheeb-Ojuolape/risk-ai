@@ -1,13 +1,19 @@
-import { Grid, Box } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { Outlet } from "react-router";
 
 function AuthLayout() {
+  const token = sessionStorage.getItem("authToken")
+   //route guard
+   if(token){
+    window.location.href= "/dashboard"
+  }
+
   return (
-    <Grid align="center" justify="center" p={"20px"}>
-      <Box h={"100vh"}>
+    <Box h={"1000px"} p={"20px"}>
+      <Box>
         <Outlet />
       </Box>
-    </Grid>
+    </Box>
   );
 }
 

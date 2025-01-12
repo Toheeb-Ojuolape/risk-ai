@@ -3,7 +3,6 @@
 import {
   IconLayoutDashboard,
   IconLocationDollar,
-  IconLockAccess,
   IconLogout,
   IconMessageUser,
   IconReportAnalytics,
@@ -12,28 +11,31 @@ import {
 import { Code, Group } from "@mantine/core";
 import classes from "./menu.module.css";
 import { UserButton } from "../Buttons/UserButton/UserButton";
+import { logoutUser } from "../../store/auth.slice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 const data = [
   { link: "dashboard", label: "Dashboard", icon: IconLayoutDashboard },
   { link: "assets", label: "Assets", icon: IconLocationDollar },
   { link: "reports", label: "Reports", icon: IconReportAnalytics },
-  { link: "", label: "AI Assistant", icon: IconMessageUser },
+  { link: "ai-assistant", label: "AI Assistant", icon: IconMessageUser },
   { link: "settings", label: "Settings", icon: IconSettings2 },
-  { link: "security", label: "Security", icon: IconLockAccess },
 ];
 
 function NavBar({ toggleMobile }) {
   const pathname = window.location.pathname.slice(1);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const links = data.map((item) => (
     <a
       className={classes.link}
       data-active={item.link === pathname || undefined}
-      href={item.link}
       key={item.label}
       onClick={(event) => {
-        event.preventDefault();
-        window.location.href = item.link;
+        event.preventDefault()
+        navigate(`/${item.link}`, {replace: true})
         toggleMobile();
       }}
     >
@@ -46,7 +48,6 @@ function NavBar({ toggleMobile }) {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
-          {/* <MantineLogo size={28} inverted style={{ color: 'white' }} /> */}
           <Code fw={700} fz={"h3"} className={classes.version}>
             RiskAI
           </Code>
@@ -58,9 +59,10 @@ function NavBar({ toggleMobile }) {
         <UserButton />
 
         <a
-          href="#"
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
+          onClick={() => {
+            dispatch(logoutUser());
+          }}
         >
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>

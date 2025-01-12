@@ -6,11 +6,15 @@ import {
   TextInput,
   Button,
   InputLabel,
+  Flex,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconArrowLeft } from "@tabler/icons-react";
+import authService from "../../services/authService";
+import { useState } from "react";
 
 function ForgotPassword() {
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     initialValues: {
       email: "",
@@ -20,25 +24,50 @@ function ForgotPassword() {
     },
 
     validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Please enter a valid email"),
-      password: (val) =>
-        val.length <= 6
-          ? "Password should include at least 6 characters"
-          : null,
+      email: (val) =>
+        /^\S+@\S+$/.test(val) ? null : "Please enter a valid email",
     },
   });
 
+  async function resetPassword() {
+    try {
+      setLoading(true);
+      await authService.forgotPassword({
+        email: form.values.email,
+      });
+      setLoading(false);
+      form.reset()
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  }
+
   return (
-    <Box mt={"10%"} miw={"600px"} maw={"600px"}>
-      <Card py={"50px"} px={"36px"} shadow={"xl"} radius={"lg"}>
-        <Box className="pointer" onClick={() => window.history.go(-1)} my={"10px"}>
+    <Flex mt={"10%"} justify={"center"}>
+      <Card
+        w={"100%"}
+        maw={"600px"}
+        py={"50px"}
+        px={"36px"}
+        shadow={"xl"}
+        radius={"lg"}
+      >
+        <Box
+          className="pointer"
+          onClick={() => window.history.go(-1)}
+          my={"10px"}
+        >
           <IconArrowLeft />
         </Box>
         <Text size={"30px"} className="bold">
           Reset Password
         </Text>
 
-        <form className={"form"} onSubmit={form.onSubmit(() => {})}>
+        <form
+          className={"form"}
+          onSubmit={form.onSubmit(() => resetPassword())}
+        >
           <Stack>
             <InputLabel className="label" fz={"18px"}>
               Email address
@@ -56,7 +85,7 @@ function ForgotPassword() {
 
           <Stack>
             <Button
-              loading={false}
+              loading={loading}
               radius={"md"}
               size={"lg"}
               type="submit"
@@ -68,7 +97,7 @@ function ForgotPassword() {
           </Stack>
         </form>
       </Card>
-    </Box>
+    </Flex>
   );
 }
 
