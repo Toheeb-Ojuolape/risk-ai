@@ -49,6 +49,11 @@ The rough idea for the dashboard is a platform that enables underwriters to sign
 - OpenWeather API & WeatherAPI for obtaining future and forecasted weather data about the location of an asset
 
 
+## Project Architecture
+<img width="1137" alt="Screenshot 2025-01-14 at 13 34 35" src="https://github.com/user-attachments/assets/4bebf45b-ee6b-4e75-b3f2-c471f98c4961" />
+
+
+
 ## Deployment & Packaging
 
 The project is available for setup using Docker or using npm for React and pip (uvicorn) for python
@@ -96,6 +101,17 @@ pip install --no-cache-dir -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
+
+# 🔗 Deployment
+
+The project is available in production at the following links:
+
+**Frontend:** https://risk-ai-app.netlify.app/
+
+**Backend:** https://risk-ai.onrender.com/
+
+
+
 ## Documentation
 
 ### Documentation for React Frontend
@@ -123,5 +139,5 @@ https://documenter.getpostman.com/view/25719172/2sAYQXnXwu#f64edafc-6eab-45a6-8b
 
 - Write unit tests and integration tests for backend and frontend features
 - Enable underwriters to be able to upload images of the assets and use this image data to further finetune the reports
-- Implement a second-layer filter of the news information obtained from the Google News API
+- Implement a second-layer filter of the news information obtained from the Google News API to improve accuracy
 - Develop a speech-to-text feature that enables users to speak to the platform and get things done through speech rather than typing
