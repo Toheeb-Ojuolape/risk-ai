@@ -1,0 +1,10 @@
+fastapi[all]
+uvicorn
+firebase-admin
+pydantic
+starlette
+python-dotenv
+pyjwt
+chainlit
+mailjet_rest
+gnews
