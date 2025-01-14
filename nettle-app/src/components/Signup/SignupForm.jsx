@@ -74,6 +74,7 @@ function SignupForm({ handleNext }) {
         display_name: user.displayName,
         uid: user.uid,
       });
+      sessionStorage.setItem("authUser",JSON.stringify(user))
       window.location.href = "/dashboard"
       setGoogleLoading(false);
     } catch (error) {

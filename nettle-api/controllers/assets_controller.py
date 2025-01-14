@@ -31,26 +31,27 @@ def create_asset_controller(request: Request):
         }
 
         asset_ref.set(asset_data)
-        return {'message': 'Asset created successfully'}
+        return {'message': 'Asset created successfully', 'data': asset_ref.id}
     except Exception as e:
         return JSONResponse(
             status_code=400,
             content={'error': 'Something went wrong 🥺!', 'message': str(e)}
         )
 
+
 def fetch_assets_controller(request: Request):
     try:
-        user = request.state.user["sub"]
-        assets_ref = db.collection("assets")
-        query = assets_ref.where("author", "==", user)
+        user = request.state.user['sub']
+        assets_ref = db.collection('assets')
+        query = assets_ref.where('author', '==', user)
         assets = query.stream()
         asset_list = [asset.to_dict() for asset in assets]
-        
+
         return {'message': 'Assets fetched successfully', 'data': asset_list}
     except Exception as e:
         return JSONResponse(
             status_code=400,
-            content={"error":"Something went wrong 🥺", message: str(e)}
+            content={'error': 'Something went wrong 🥺', message: str(e)}
         )
 
 
@@ -90,6 +91,17 @@ def update_asset_controller(request: Request, id: str):
 
         return {'message': 'Asset details updated successfully'}
 
+    except Exception as e:
+        return JSONResponse(
+            status_code=400,
+            content={'error': 'Something went wrong 🥺!', 'message': str(e)}
+        )
+
+
+def delete_asset_controller(request: Request, id):
+    try:
+        data = db.collection('assets').document(id).delete()
+        return {'message': 'Asset deleted successfully', 'data': data.to_dict()}
     except Exception as e:
         return JSONResponse(
             status_code=400,

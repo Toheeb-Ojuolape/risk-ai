@@ -3,7 +3,6 @@ import { notifications } from "@mantine/notifications";
 import { NOTIFICATION_ERROR, NOTIFICATION_SUCCESS } from "../constants";
 
 export const handleSuccess = (message) => {
-  console.log(message);
   return notifications.show({
     ...NOTIFICATION_SUCCESS,
     message,

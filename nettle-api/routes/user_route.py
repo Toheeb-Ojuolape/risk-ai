@@ -10,12 +10,14 @@ from controllers.assets_controller import (
     create_asset_controller,
     fetch_asset_controller,
     update_asset_controller,
-    fetch_assets_controller
+    fetch_assets_controller,
+    delete_asset_controller
 )
 from controllers.reports_controller import (
     generate_report_controller,
     fetch_reports_controller,
-    fetch_report_controller
+    fetch_report_controller,
+    delete_report_controller
 )
 
 # Initialize the router
@@ -62,6 +64,11 @@ async def update_asset(request: Request, id: str, asset: UpdateAsset):
     request.state.body = asset
     return update_asset_controller(request, id)
 
+@user_router.delete("/asset/{id}")
+async def delete_asset(request: Request, id:str):
+    return delete_asset_controller(request, id)
+
+
 
 # Report Management
 @user_router.get('/reports')
@@ -75,3 +82,8 @@ async def generate_report(request: Request, id: str):
 @user_router.get('/reports/{id}')
 async def fetch_report(request: Request, id: str):
     return fetch_report_controller(request, id)
+
+@user_router.delete("/reports/{id}")
+async def delete_report(request: Request, id:str):
+    return delete_report_controller(request, id)
+

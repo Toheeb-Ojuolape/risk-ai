@@ -31,7 +31,7 @@ export const getReport = createAsyncThunk("reports/getReport", async (id) => {
 
 
 const initialState = {
-  report: null,
+  data: null,
   reports: [],
   loading: false,
 };
@@ -48,7 +48,8 @@ const assetSlice = createSlice({
       })
       .addCase(getReport.fulfilled, (state, action) => {
         state.loading = false;
-        state.report = action.payload.data;
+        console.log(action.payload)
+        state.data = action.payload.data;
       })
       .addCase(getReport.rejected, (state) => {
         state.loading = false;

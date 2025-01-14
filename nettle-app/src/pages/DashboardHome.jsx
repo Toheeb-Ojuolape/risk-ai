@@ -1,18 +1,21 @@
 import { Text, Box, Grid, Card, Center } from "@mantine/core";
 import StatCard from "../elements/Cards/StatCard";
-import DonutGraph from "../elements/Graph/DonutGraph";
 import HalfDonut from "../elements/Graph/HalfDonut";
-import { barchartdata, data } from "../data";
+import { risk_data } from "../data";
 import BarChartComponent from "../elements/Graph/BarChartComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAssets } from "../store/asset.slice";
 import { getReports } from "../store/report.slice";
+import RiskRange from "../elements/RIskRange";
+import { getRisk } from "../utils";
 
 function DashboardHome() {
-  const { displayName } = useSelector((state) => state.auth.user._data);
+  const { displayName } = useSelector((state) => state.auth.user);
   const { loading, assets } = useSelector((state) => state.asset);
-  const { loading: isReportLoading, reports } = useSelector((state) => state.report);
+  const { loading: isReportLoading, reports } = useSelector(
+    (state) => state.report
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,8 +26,11 @@ function DashboardHome() {
   // Function to calculate the average risk score
   const calculateAverageRiskScore = (assets) => {
     if (!assets.length) return 0;
-    const totalRiskScore = assets.reduce((acc, asset) => acc + (asset.risk_score || 0), 0);
-    return (totalRiskScore / assets.length).toFixed(2); // Average risk score with 2 decimal places
+    const totalRiskScore = assets.reduce(
+      (acc, asset) => acc + (asset.risk_score || 0),
+      0
+    );
+    return (totalRiskScore / assets.length).toFixed(1); // Average risk score with 2 decimal places
   };
 
   // Dynamically calculate stats
@@ -45,9 +51,10 @@ function DashboardHome() {
       title: "Average Risk Score",
       description: "Since last week",
       icon: "IconGraph",
-      value: loading || isReportLoading
-        ? "Loading..."
-        : calculateAverageRiskScore(reports),
+      value:
+        loading || isReportLoading
+          ? "Loading..."
+          : calculateAverageRiskScore(reports),
     },
   ];
 
@@ -78,27 +85,39 @@ function DashboardHome() {
       <Grid>
         <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
           <Card radius={"lg"} py={"32px"} shadow="md">
+            <Text my={"lg"} fz={"h5"} fw={"bold"}>
+              Risk History
+            </Text>
             <Center>
-              <DonutGraph data={data} label={"Natural Disaster"} />
+              <BarChartComponent data={reports} name={"History"} />
             </Center>
           </Card>
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
           <Card py={"32px"} shadow="md">
+            <Text my={"md"} fw={"bold"} align={"center"}>
+              Average Risk Score
+            </Text>
             <Center>
-              <HalfDonut data={data} label={"10"} />
+              <HalfDonut
+                data={risk_data}
+                label={calculateAverageRiskScore(reports)}
+                width={"400"}
+              />
             </Center>
-          </Card>
-        </Grid.Col>
-      </Grid>
 
-      <Grid my={"20px"}>
-        <Grid.Col span={{ base: 12, md: 12, lg: 12 }}>
-          <Card py={40} shadow={"md"}>
-            <Center>
-              <BarChartComponent data={barchartdata} name={"History"} />
-            </Center>
+            <div
+              className="risk-chip"
+              style={{
+                background: getRisk(calculateAverageRiskScore(reports)).color,
+              }}
+            >
+              {" "}
+              {getRisk(calculateAverageRiskScore(reports)).type}
+            </div>
+
+            <RiskRange />
           </Card>
         </Grid.Col>
       </Grid>

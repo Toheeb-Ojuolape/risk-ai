@@ -1,11 +1,10 @@
 def verify_email(name: str, verification_link: str) -> str:
     content = f"""
     <html>
-        <body style="height:100vh;font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9;">
-        
+        <body style="height:100vh;font-family: Arial, sans-serif; margin: 0; padding:30px 0; background-color: #f9f9f9;">
+        <h2 style="padding:12px 0px;  text-align: center"> Risk AI</h2>
             <div style="max-width: 500px; margin: 36px auto; background: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-               <h3 style="margin:36px auto; text-align: center"> Risk AI</h3>
-
+               <h3  style="padding:36px 0px; margin:36px 0px; text-align: center"> Risk AI</h3>
                  <h2 style="color: #333;">Hello {name},</h2>
                 <p style="color: #555; line-height: 1.6;">
                     Thank you for signing up on RiskAI, we have received your details. Kindly tap the button below to verify your email:

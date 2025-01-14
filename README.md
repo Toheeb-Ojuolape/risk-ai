@@ -1,41 +1,127 @@
 # Nettle Technical Assessment
-Date: Jan 7th, 2025
+
+
+**Date: Jan 13th, 2025**
 
 ## Planning
-> Use this section to track your thinking, either using plain text, sketches or accessible links.
+
 > 1. What is the rough plan for the application?
-The rough idea for the dashboard would be a platform that enables underwriters to signup with their details, add an asset (its value, name, location e.t.c) and then get data about the asset's potential risks. This data can come from news or weather data related to the location. There will also be a data interpretation or metric evaluation system in the backend that will take in all these data to generate a "Risk score" for the asset taken all of these into account 
+
+The rough idea for the dashboard is a platform that enables underwriters to signup with their details, add an asset (its value, name, location e.t.c) and then get data about the asset's potential natural disasters/ risks. This data will come from news or weather data related to the location. There will also be a data interpretation or metric evaluation system in the backend that will take in all these data to generate a "Risk score" for the asset taken all of these into account 
+
 
 > 2. What features do I want to develop?
-- Authentication (Signup, Login, Forgot Password, User Profile)
-- Add Asset (can be a two/three step process, would take in the exact location of the asset powered by Google Maps API) 
- - takes in Asset name, location, Manufacturer, Cost, Years of usage, Last fault incident (if applicable)
-- Generate data about the asset based on information about the asset's location, manufacturer, and other information supplied about the asset. 
+
+- Authentication (Signup, Google Signup, Login, Forgot Password, User Profile).
+
+- Add Asset (can be a two/three step process, which would take in the exact location of the asset powered by Google Maps API). Takes in Asset name, location, Manufacturer, Cost, Years of usage, Last fault incident (if applicable).
+
+- Customize the report to show different types of natural disasters which users can toggle on or off
+
+- Generate Qualitative/Quantitative Risk Assessment Report about the asset based on information about the asset's location, weather data, years of use and other information supplied about the asset.
+
+- Personalized AI Assistant that fetch data about an asset and give a brief/concise summary of the asset's Qualitative/Quantitative Risk Assessment. 
+
+- Email notification service to let users know when their report is ready (provided the report generation step takes time).
+
+- Users can download a copy 
 
 > 3. What is the application architecture?
-- A simple frontend application that connects to a backend with services connecting to different 3rd party endpoint (OPENAI/Claude, Google Maps API, Google Weather API)
+
+- A web application that connects to a backend with services connecting to different 3rd party endpoint (Gemini AI, Google Maps API, Google Weather API)
 
 > 4. What technologies will I be using?
-- Frontend - React.js, Tailwind, Mantine, Streamlit
-- Backend - Python (FastAPI), Firebase (for speed and ease of deployment)
+
+- Frontend - React.js, Mantine, Chainlit (UI for the AI Assistant)
+
+- Backend - Python (FastAPI), Google News API, Firebase 
+
+- Database - Firestore
 
 > 5. What is my chosen data source?
-- Data sources - Google News API, Gemini API for AI content creation, Google Maps API, Google Places API, OpenWeather API
 
-## Implementation
-> Use this section to briefly justify your decisions.
+- Google News API for obtaining recent news data about natural disasters (floods, earthquakes, wildfires)
 
-### Data Source
+- Gemini API for AI content creation and data summary
 
-### Technologies
+- Google Maps API & Google Places API for obtaining exact location data for an asset (longitude, latitude, altitude above sea level e.t.c)
 
-### Testing
+- OpenWeather API & WeatherAPI for obtaining future and forecasted weather data about the location of an asset
 
-### Deployment & Packaging
+
+## Deployment & Packaging
+
+The project is available for setup using Docker or using npm for React and pip (uvicorn) for python
+
+## For Frontend
+
+**NOTE:** Please make sure to create and populate the .env file before trying to run the project
+ 
+### Using Docker
+
+```
+cd nettle-app
+docker-compose up --build
+
+```
+
+### Using npm
+
+```
+cd nettle-app
+npm i
+npm run dev
+
+```
+
+
+## For Backend
+
+**NOTE:** Please make sure to create and populate the .env file before trying to run the project
+
+### Using Docker
+
+```
+https://github.com/Toheeb-Ojuolape/risk-ai.git
+cd nettle-api
+docker-compose up --build
+```
+
+### Using pip
+
+```
+git clone https://github.com/Toheeb-Ojuolape/risk-ai.git
+cd nettle-app
+pip install --no-cache-dir -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
 
 ## Documentation
-> Create appropriate headings that describe how the app should be deployed and used.
+
+### Documentation for React Frontend
+
+The key features of the frontend application are:
+
+1. Signup/Login with email or Google
+2. Dashboard screen displaying statistics of assets under management, overall risk score and risk history
+3. An add asset feature that enables users enter the details of their asset
+4. A customize report feature that enables users to choose which natural disasters they would like to see in their report
+5. A generate and download report feature that enables users to generate report and download it once it is ready. (An email notification is sent to users once their report is ready)
+6. A ChatGPT-like AI-assistant called RiskAI that can provide personalized advice and assistance to users on their uploaded assets
+
+
+### Documentation for Python (FastAPI) Backend
+
+All endpoints developed for the project and all 3rd party services are properly documented in the link below with sample requests and responses
+
+
+https://documenter.getpostman.com/view/25719172/2sAYQXnXwu#f64edafc-6eab-45a6-8b23-edda4473b0ac
 
 
 ## Future Improvements
 > What would you do if you had more time or resources?
+
+- Write unit tests and integration tests for backend and frontend features
+- Enable underwriters to be able to upload images of the assets and use this image data to further finetune the reports
+- Implement a second-layer filter of the news information obtained from the Google News API
+- Develop a speech-to-text feature that enables users to speak to the platform and get things done through speech rather than typing
