@@ -8,9 +8,11 @@ from config.firebase import auth
 from services.email_service import send_email
 from templates.verify_email import verify_email
 from templates.forgot_password import forgot_password_email
-
+import os
 
 db = firestore.client()
+
+FRONTEND_URL = os.getenv("FRONTEND_URL")
 
 
 def signup_user(email: str, password: str, display_name: str, company_name: str):
@@ -22,7 +24,7 @@ def signup_user(email: str, password: str, display_name: str, company_name: str)
         verification_link = auth.generate_email_verification_link(
             email,
             action_code_settings=auth.ActionCodeSettings(
-                url='https://nettle-api.firebaseapp.com/login', handle_code_in_app=False
+                url=f"{FRONTEND_URL}/login", handle_code_in_app=False
             )
         )
 
@@ -85,7 +87,7 @@ def forgot_password(email: str):
         link = auth.generate_password_reset_link(
             email,
             action_code_settings=auth.ActionCodeSettings(
-                url='https://nettle-api.firebaseapp.com/login', handle_code_in_app=False
+                url=f"{FRONTEND_URL}/login", handle_code_in_app=False
             )
         )
 
