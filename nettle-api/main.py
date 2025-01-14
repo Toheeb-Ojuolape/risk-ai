@@ -11,7 +11,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
-    "https://example.com",    
+    "https://risk-ai-app.netlify.app"    
 ]
 
 
