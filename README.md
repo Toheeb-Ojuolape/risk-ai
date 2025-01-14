@@ -12,19 +12,20 @@ The rough idea for the dashboard is a platform that enables underwriters to sign
 
 > 2. What features do I want to develop?
 
-- Authentication (Signup, Google Signup, Login, Forgot Password, User Profile).
+[x] Authentication (Signup, Google Signup, Login, Forgot Password, User Profile).
 
-- Add Asset (can be a two/three step process, which would take in the exact location of the asset powered by Google Maps API). Takes in Asset name, location, Manufacturer, Cost, Years of usage, Last fault incident (if applicable).
+[x] Add Asset (can be a two/three step process, which would take in the exact location of the asset powered by Google Maps API). Takes in Asset name, location, Manufacturer, Cost, Years of usage, Last fault incident (if applicable).
 
-- Customize the report to show different types of natural disasters which users can toggle on or off
+[x] Customize the report to show different types of natural disasters which users can toggle on or off
 
-- Generate Qualitative/Quantitative Risk Assessment Report about the asset based on information about the asset's location, weather data, years of use and other information supplied about the asset.
+[x] Generate Qualitative/Quantitative Risk Assessment Report about the asset based on information about the asset's location, weather data, years of use and other information supplied about the asset.
 
-- Personalized AI Assistant that fetch data about an asset and give a brief/concise summary of the asset's Qualitative/Quantitative Risk Assessment. 
+[x] Personalized AI Assistant that fetch data about an asset and give a brief/concise summary of the asset's Qualitative/Quantitative Risk Assessment. 
 
-- Email notification service to let users know when their report is ready (provided the report generation step takes time).
+[x] Email notification service to let users know when their report is ready (provided the report generation step takes time).
 
-- Users can download a copy 
+[x] Users can download a copy of their report as a PDF 
+
 
 > 3. What is the application architecture?
 
