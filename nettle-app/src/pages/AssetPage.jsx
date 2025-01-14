@@ -24,7 +24,7 @@ function AssetPage() {
       </Flex>
 
       {loading ? "Loading assets..." : null}
-      {!loading && <ChartTable loading={loading} assets={assets} />}
+      {!loading && <ChartTable loading={loading} data={assets} />}
     </Box>
   );
 }

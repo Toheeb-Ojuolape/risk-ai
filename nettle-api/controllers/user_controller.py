@@ -9,7 +9,7 @@ db  = firestore.client()
 def fetch_user_controller(request: Request):
     try:
         uid = request.state.user["sub"]
-        user = auth.get_user(uid)
+        user: User = auth.get_user(uid)
         # Placeholder for token verification logic
         return {"message": "User details fetched successfully", "data": user}
     except Exception as e:

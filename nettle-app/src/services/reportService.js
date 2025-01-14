@@ -28,6 +28,15 @@ class ReportService {
       handleErrors(error.response.data.detail);
     }
   }
+
+  async deleteReport(id) {
+    try {
+      const response = await api.delete("/user/reports/" + id);
+      return response.data;
+    } catch (error) {
+      handleErrors(error.response.data.detail);
+    }
+  }
 }
 
 export default new ReportService();

@@ -6,7 +6,7 @@ class AssetService {
     try {
       const response = await api.post("/user/asset", asset);
       handleSuccess(response.data.message);
-      return response;
+      return response.data;
     } catch (error) {
       handleErrors(error.response.data.detail);
     }
@@ -15,6 +15,14 @@ class AssetService {
   async getAssets() {
     try {
       const response = await api.get("/user/asset");
+      return response.data;
+    } catch (error) {
+      handleErrors(error.response.data.detail);
+    }
+  }
+  async deleteAsset(id) {
+    try {
+      const response = await api.delete("/user/asset/" + id);
       return response.data;
     } catch (error) {
       handleErrors(error.response.data.detail);

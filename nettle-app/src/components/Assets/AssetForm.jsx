@@ -10,7 +10,7 @@ import {
   Button,
   Select,
 } from "@mantine/core";
-import { UploadImage } from "../../elements/UploadImage";
+// import { UploadImage } from "../../elements/UploadImage";
 import LocationInput from "../../elements/Forms/LocationInput";
 import { useForm } from "@mantine/form";
 import assetsService from "../../services/assetsService";
@@ -56,8 +56,8 @@ function AssetForm({ handleContinue }) {
     delete asset.location;
     try {
       setLoading(true);
-      await assetsService.addAsset(asset);
-      handleContinue();
+      const response = await assetsService.addAsset(asset);
+      handleContinue(response.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -154,11 +154,11 @@ function AssetForm({ handleContinue }) {
           />
         </Stack>
 
-        <Stack>
+        {/* <Stack>
           <InputLabel className="label">Upload Image of Asset</InputLabel>
 
           <UploadImage />
-        </Stack>
+        </Stack> */}
 
         <Button loading={loading} type={"submit"} size={"lg"} w={"100%"}>
           {" "}

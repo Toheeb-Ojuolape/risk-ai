@@ -14,7 +14,7 @@ const authSlice = createSlice({
     logoutUser: () => {
       sessionStorage.removeItem("authToken");
       sessionStorage.removeItem("authUser");
-      window.location.reload()
+      window.location.href = "/login";
     },
   },
 });

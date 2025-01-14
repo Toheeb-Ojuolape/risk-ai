@@ -83,7 +83,7 @@ function Login() {
         my={"xl"}
         w={"100%"}
       >
-        <Text size={"30px"} className="bold">
+        <Text mt={"md"} size={"30px"} className="bold">
           Welcome Back
         </Text>
 

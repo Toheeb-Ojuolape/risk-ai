@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Box, Button, Card, Flex, Switch, Text } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 
-function CustomizeReport({ prevStep, handleContinue }) {
+function CustomizeReport({ prevStep, handleContinue, loading }) {
+  const [weather] = useState(true);
+  const [earthquake, setEarthQuake] = useState(false);
+  const [flood, setFlood] = useState(false);
+  const [wildfire, setWildfire] = useState(false);
+
   return (
     <Card
       radius={"lg"}
@@ -39,25 +45,54 @@ function CustomizeReport({ prevStep, handleContinue }) {
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
             Include Earthquake Risk
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch
+            checked={earthquake}
+            onChange={(e) => setEarthQuake(e.target.checked)}
+            size="xl"
+            onLabel="ON"
+            offLabel="OFF"
+          />
         </Flex>
 
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
             Include Flood & Tsunami Risk
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch
+            checked={flood}
+            onChange={(e) => setFlood(e.target.checked)}
+            size="xl"
+            onLabel="ON"
+            offLabel="OFF"
+          />
         </Flex>
 
         <Flex justify={"space-between"}>
           <Text mt={"3"} color={"gray"} fz={"18"} fw={"500"}>
             Include Wildfire Risk
           </Text>
-          <Switch size="xl" onLabel="ON" offLabel="OFF" />
+          <Switch
+            checked={wildfire}
+            onChange={(e) => setWildfire(e.target.checked)}
+            size="xl"
+            onLabel="ON"
+            offLabel="OFF"
+          />
         </Flex>
       </form>
 
-      <Button size={"lg"} onClick={handleContinue}>
+      <Button
+        size={"lg"}
+        loading={loading}
+        onClick={() =>
+          handleContinue({
+            weather,
+            earthquake,
+            flood,
+            wildfire,
+          })
+        }
+      >
         {" "}
         Continue
       </Button>

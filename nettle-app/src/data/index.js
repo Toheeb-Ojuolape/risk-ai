@@ -1,8 +1,7 @@
-export const data = [
-    { name: 'USA', value: 400, color: 'indigo.6' },
-    { name: 'India', value: 300, color: 'yellow.6' },
-    { name: 'Japan', value: 100, color: 'teal.6' },
-    { name: 'Other', value: 200, color: 'gray.6' },
+export const risk_data = [
+    { name: 'High', value: 5, color: 'teal.6' },
+    { name: 'Low', value: 5, color: 'yellow.6' },
+    { name: 'Medium', value: 5, color: 'red.6' },
   ];
 
 

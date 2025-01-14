@@ -4,7 +4,8 @@ import DashboardHome from "../pages/DashboardHome";
 import ReportsPage from "../pages/ReportsPage";
 import ProfilePage from "../pages/ProfilePage";
 import SettingsPage from "../pages/SettingsPage";
-import AiAssistant from "../pages/AiAssistant";
+import AiAssistant from "../pages/AIAssistant";
+import ReportPage from "../pages/ReportPage";
 
 const dashboardRoutes = [
   {
@@ -25,6 +26,11 @@ const dashboardRoutes = [
   {
     path: "/reports",
     element: <ReportsPage />,
+  },
+
+  {
+    path: "/reports/:id",
+    element: <ReportPage />,
   },
 
   {

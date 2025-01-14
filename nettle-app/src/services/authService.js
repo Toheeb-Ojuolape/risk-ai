@@ -30,7 +30,7 @@ class AuthService {
       const response = await api.post("/auth/login", loginData);
       handleSuccess(response.data.message);
       sessionStorage.setItem("authToken", response.data.token);
-      sessionStorage.setItem("authUser", JSON.stringify(response.data.data))
+      sessionStorage.setItem("authUser", JSON.stringify(response.data.data._data))
       return response;
     } catch (error) {
       handleErrors(error.response.data.detail);

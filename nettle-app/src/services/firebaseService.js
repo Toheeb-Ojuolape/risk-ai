@@ -1,15 +1,20 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDejvD8fttzSVTlx5YqZGvqv3ty75zu9_k",
-  authDomain: "nettle-api.firebaseapp.com",
-  projectId: "nettle-api",
-  storageBucket: "nettle-api.firebasestorage.app",
-  messagingSenderId: "286568484059",
-  appId: "1:286568484059:web:cdae6cff325a60152b90fe",
-  measurementId: "G-W5PPQL6HKT",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_DOMAIN_NAME,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

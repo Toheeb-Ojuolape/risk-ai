@@ -10,7 +10,7 @@ function AssetPage() {
 
   useEffect(() => {
     dispatch(getReports());
-  }, []); //
+  }, []); 
 
   return (
     <Box>

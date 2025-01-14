@@ -22,8 +22,7 @@
   font-weight: 600 !important;
 }
 
-
-.pointer{
+.pointer {
   cursor: pointer !important;
 }
 
@@ -31,16 +30,59 @@
   margin: -10px 0px -10px 0px !important;
 }
 
-
-
 iframe {
   outline: 0 !important;
-  border: 0 !important
+  border: 0 !important;
 }
 
-
-.iframe{
+.iframe {
   width: 100% !important;
   height: 100vh !important;
   margin: 20px 0px !important;
+}
+
+.scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0px 0px 30px 10px;
+  gap: 10px;
+}
+
+.scroll > * {
+  flex: 0 0 auto !important;
+}
+
+.custom-donut-chart text {
+  font-size: 40px !important;
+  font-weight: bold;
+}
+
+.green-box {
+  height: 10px;
+  width: 10px;
+  background: #17b785;
+  margin: 6px 0px 0px 0px;
+}
+
+.yellow-box {
+  height: 10px;
+  width: 10px;
+  background: #f9b009;
+  margin: 6px 0px 0px 0px;
+}
+
+.red-box {
+  height: 10px;
+  width: 10px;
+  background: #fc4f51;
+  margin: 6px 0px 0px 0px;
+}
+
+.risk-chip {
+  padding: 5px 8px;
+  font-size: 14px;
+  color: white;
+  max-width: 120px;
+  margin: auto
 }

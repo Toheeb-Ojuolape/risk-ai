@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 export function UserButton() {
   const { displayName, photoUrl, email } = useSelector(
-    (state) => state.auth.user._data
+    (state) => state.auth.user
   );
 
   const navigate = useNavigate();
