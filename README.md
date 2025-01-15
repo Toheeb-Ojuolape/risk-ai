@@ -66,6 +66,7 @@ The project is available for setup using Docker or using npm for React and pip (
 ### Using Docker
 
 ```
+git clone https://github.com/Toheeb-Ojuolape/risk-ai.git
 cd nettle-app
 docker-compose up --build
 
@@ -74,6 +75,7 @@ docker-compose up --build
 ### Using npm
 
 ```
+git clone https://github.com/Toheeb-Ojuolape/risk-ai.git
 cd nettle-app
 npm i
 npm run dev
@@ -97,7 +99,7 @@ docker-compose up --build
 
 ```
 git clone https://github.com/Toheeb-Ojuolape/risk-ai.git
-cd nettle-app
+cd nettle-api
 pip install --no-cache-dir -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
