@@ -46,9 +46,9 @@ function ReportContent({ data }) {
                 width={"300"}
               />
             </Center>
-            <div className="risk-chip" style={{ background: risk.color }}>
+            <div className="risk-chip">
               {" "}
-              {risk.type}
+              {risk?.type}
             </div>
             <RiskRange />
           </Card>
@@ -70,8 +70,8 @@ function ReportContent({ data }) {
         <Stack>
           <Text fw={"bold"} fz={"h2"}>
             Earthquake:{" "}
-            <span style={{ color: earthquakerisk.color }}>
-              {earthquakerisk.type}
+            <span>
+              {earthquakerisk?.type}
             </span>
           </Text>
 
@@ -98,7 +98,7 @@ function ReportContent({ data }) {
         <Stack my={"lg"}>
           <Text fw={"bold"} fz={"h2"}>
             Floods:{" "}
-            <span style={{ color: floodrisk.color }}> {floodrisk.type}</span>
+            <span> {floodrisk?.type}</span>
           </Text>
 
           <div className="scroll">
@@ -124,8 +124,8 @@ function ReportContent({ data }) {
         <Stack my={"lg"}>
           <Text fw={"bold"} fz={"h2"}>
             Wildfire:{" "}
-            <span style={{ color: wildfirerisk.color }}>
-              {wildfirerisk.type}
+            <span>
+              {wildfirerisk?.type}
             </span>
           </Text>
 
